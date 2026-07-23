@@ -4,33 +4,45 @@ Reproducible pipeline for segmenting cells and quantifying immunofluorescence (I
 markers in CFA microscopy images. Full design lives in [`../plan.md`](../plan.md);
 this folder implements it stage by stage.
 
-## Status — Milestone M1 (Stage 0 + Stage 1) ✅
-- **Stage 0** — builds a reviewable `data/manifest.csv` mapping every raw TIFF →
-  panel / sample / magnification / field / marker / channel / role, and validates it.
-- **Stage 1** — extracts a clean 2-D grayscale image per marker per field
-  (max-projection across R/G/B of the 8-bit pseudo-coloured exports) plus per-field
-  QC contact sheets.
+## Status — M1–M5 complete ✅ (end-to-end on the current 8-bit data)
+| Stage | What |
+|---|---|
+| 0 config/manifest · 1 ingest | reviewable `manifest.csv`; RGB→grayscale extraction + QC |
+| 3 segment · 4 cell bodies | Cellpose-SAM nuclei (GPU) → masks; nucleus→cell expansion |
+| 5 features · 6 positivity · 7 phenotype | single-cell table + AnnData; Otsu positivity; co-expression |
+| 8 nerve · 9 spatial | PGP9.5 area/skeleton; distance-to-nerve + squidpy enrichment |
+| 10 stats · 11 report | per-image/sample summaries + internal tests; self-contained HTML report |
 
-Later milestones (M2 segmentation with Cellpose-SAM, M3 quantification, M4 nerve/spatial,
-M5 stats/report, M6 raw-16-bit rerun) are not yet implemented — see `../plan.md` §6, §8.
+M6 (rerun on **raw 16-bit** data + finalize) is pending the raw images — see `../plan.md` §3, §8.
+Analysis is **descriptive** (single CFA condition, no control group).
 
 ## Setup (SickKids `hpf`)
 ```bash
-module load python/3.11.15
+module load python/3.11.15                 # REQUIRED before activating (libpython on the venv)
 python3 -m venv .venv && source .venv/bin/activate
-pip install -r requirements.txt
+pip install -r requirements.txt            # M1 stack; heavier stages add torch/cellpose/squidpy/... 
 ```
 
-## Run M1
+## Run the whole pipeline
 ```bash
 cd "/hpf/projects/msalter/sghazis/Imaging/ED/For Shahrzad/if-pipeline"
-source .venv/bin/activate
+module load python/3.11.15 && source .venv/bin/activate
 
-python -m src.s0_config --config config/config.yaml   # -> data/manifest.csv (review it)
-python -m src.s1_ingest --config config/config.yaml   # -> outputs/gray/*.tif + outputs/qc/*.png
+# Full run incl. GPU segmentation — submit to a GPU node:
+sbatch jobs/run_all.sbatch
 
-pytest tests/                                          # unit tests
+# Or CPU-only (reuse existing masks; run segmentation separately via sbatch jobs/run_segmentation.sbatch):
+python run_all.py --config config/config.yaml --skip-segmentation
+
+pytest tests/                              # unit tests (37)
 ```
+`run_all.py` runs Stages 0→11, preserves a human-reviewed manifest (use `--rebuild-manifest` to
+regenerate), and writes `outputs/run_provenance.txt` (timestamp + package versions + config).
+Final report: **`outputs/report/report.html`**.
+
+### Individual stages
+Each stage is also a CLI, e.g. `python -m src.s6_positivity --config config/config.yaml`.
+GPU stages (3–4) need `sbatch` on `gen_gpu` with `--constraint=AlmaLinux9` (see `jobs/*.sbatch`).
 
 ## Review the results
 A methods-documented review notebook renders the manifest, all 6 QC contact sheets, per-marker

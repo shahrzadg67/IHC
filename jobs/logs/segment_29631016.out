@@ -1,0 +1,27 @@
+=== node: cn543.ccm.sickkids.ca ===
+GPU 0: NVIDIA L4 (UUID: GPU-564c4284-4a3d-9d91-2478-7945d249321f)
+torch 2.6.0+cu124 | cuda.is_available = True
+
+[cellpose] requested gpu=True | GPU available/used=True
+[cellpose] model = built-in Cellpose-SAM default (cpsam)
+[cellpose] eval kwargs = {'batch_size': 8, 'flow_threshold': 0.4, 'cellprob_threshold': 0.0, 'normalize': True, 'min_size': 15}
+
+  A_CFA_20x    ->   622 nuclei  (2.6s)
+  A_CFA_40x    ->   456 nuclei  (1.3s)
+  B_1_40x      ->  1035 nuclei  (1.5s)
+  B_1.1_40x    ->   586 nuclei  (1.3s)
+  B_1.2_40x    ->   772 nuclei  (1.3s)
+  B_X_40x      ->   646 nuclei  (1.4s)
+
+Stage 3 done: 6 fields, 4117 nuclei total.
+Masks -> outputs/masks | QC overlays -> outputs/qc_seg
+
+  A_CFA_20x    expand 4px @ 20x ->   622 cells
+  A_CFA_40x    expand 6px @ 40x ->   456 cells
+  B_1.1_40x    expand 6px @ 40x ->   586 cells
+  B_1.2_40x    expand 6px @ 40x ->   772 cells
+  B_1_40x      expand 6px @ 40x ->  1035 cells
+  B_X_40x      expand 6px @ 40x ->   646 cells
+
+Stage 4 done: 6 fields. Cell masks -> outputs/masks
+=== SEGMENTATION JOB DONE ===

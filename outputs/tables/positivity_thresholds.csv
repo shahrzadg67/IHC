@@ -1,0 +1,6 @@
+panel,marker,method,threshold,n_cells,pct_positive
+A,CD11c,otsu,19.057,1078,9.4
+A,CD207,otsu,30.792,1078,1.3
+A,SYK,otsu,42.782,1078,32.9
+B,SYK,otsu,58.049,3039,18.6
+B,F4-80,otsu,41.884,3039,14.7

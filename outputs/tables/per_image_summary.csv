@@ -1,0 +1,7 @@
+field_id,panel,sample,magnification,condition,n_cells,density_per_Mpx,CD11c_pct_pos,CD207_pct_pos,SYK_pct_pos,F4-80_pct_pos,mean_dist_nerve_px,median_dist_nerve_px,pct_nerve_associated,nerve_area_pct
+A_CFA_20x,A,CFA,20x,CFA,622,593.2,6.8,0.8,40.4,,,,,
+A_CFA_40x,A,CFA,40x,CFA,456,434.9,12.9,2.0,22.8,,,,,
+B_1.1_40x,B,1.1,40x,CFA,586,558.9,,,4.6,4.8,4.4,0.0,92.5,18.92
+B_1.2_40x,B,1.2,40x,CFA,772,736.2,,,1.2,3.4,105.0,85.7,15.0,3.26
+B_1_40x,B,1,40x,CFA,1035,987.1,,,48.0,30.8,51.8,37.1,30.5,3.56
+B_X_40x,B,X,40x,CFA,646,616.1,,,5.1,11.3,49.7,39.7,23.7,2.04

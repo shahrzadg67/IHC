@@ -1,0 +1,6 @@
+panel,sample,n_fields,n_cells_mean,density_per_Mpx_mean,CD11c_pct_pos_mean,CD207_pct_pos_mean,SYK_pct_pos_mean,F4-80_pct_pos_mean,mean_dist_nerve_px_mean,median_dist_nerve_px_mean,pct_nerve_associated_mean,nerve_area_pct_mean,n_cells_sd,density_per_Mpx_sd,CD11c_pct_pos_sd,CD207_pct_pos_sd,SYK_pct_pos_sd,F4-80_pct_pos_sd,mean_dist_nerve_px_sd,median_dist_nerve_px_sd,pct_nerve_associated_sd,nerve_area_pct_sd
+A,CFA,2,539.0,514.05,9.85,1.4,31.6,,,,,,117.38,111.94,4.31,0.85,12.45,,,,,
+B,1,1,1035.0,987.1,,,48.0,30.8,51.8,37.1,30.5,3.56,,,,,,,,,,
+B,1.1,1,586.0,558.9,,,4.6,4.8,4.4,0.0,92.5,18.92,,,,,,,,,,
+B,1.2,1,772.0,736.2,,,1.2,3.4,105.0,85.7,15.0,3.26,,,,,,,,,,
+B,X,1,646.0,616.1,,,5.1,11.3,49.7,39.7,23.7,2.04,,,,,,,,,,

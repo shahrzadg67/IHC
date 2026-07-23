@@ -16,7 +16,12 @@ __pycache__/
 # --- Pipeline outputs ---
 # Regenerable grayscale extractions (Stage 1 recreates these from raw). ~30 MB.
 outputs/gray/
-# QC contact sheets (outputs/qc/) and notebooks/ ARE tracked — they showcase results.
+# Regenerable label masks (Stage 3/4 recreate these). ~24 MB.
+outputs/masks/
+# Regenerable HTML report + per-run provenance (run_all.py recreates these).
+outputs/report/
+outputs/run_provenance.txt
+# QC sheets (outputs/qc/, outputs/qc_seg/, outputs/qc_quant/) and notebooks/ ARE tracked — they showcase results.
 
 # --- OS / editor cruft ---
 .DS_Store

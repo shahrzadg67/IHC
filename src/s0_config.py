@@ -43,7 +43,9 @@ def load_config(config_path: str | Path) -> Dict[str, Any]:
 
     paths = cfg.setdefault("paths", {})
     # raw_dir is absolute in the shipped config; leave absolute paths untouched.
-    for key in ("manifest", "gray_dir", "qc_dir"):
+    # Resolve every relative output path against the repo root so stages/notebooks
+    # work regardless of the current working directory.
+    for key in ("manifest", "gray_dir", "qc_dir", "masks_dir", "qc_seg_dir"):
         if key in paths and not Path(paths[key]).is_absolute():
             paths[key] = str(repo_root / paths[key])
     if "raw_dir" in paths and not Path(paths["raw_dir"]).is_absolute():
