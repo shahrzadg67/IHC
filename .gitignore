@@ -1,0 +1,23 @@
+# --- Python environment (1.4 GB; recreate with requirements.txt) ---
+.venv/
+env/
+venv/
+
+# --- Python caches ---
+__pycache__/
+*.py[cod]
+*$py.class
+.pytest_cache/
+.mypy_cache/
+
+# --- Jupyter ---
+.ipynb_checkpoints/
+
+# --- Pipeline outputs ---
+# Regenerable grayscale extractions (Stage 1 recreates these from raw). ~30 MB.
+outputs/gray/
+# QC contact sheets (outputs/qc/) and notebooks/ ARE tracked — they showcase results.
+
+# --- OS / editor cruft ---
+.DS_Store
+*.swp

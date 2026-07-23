@@ -1,0 +1,12 @@
+# M1 (Stage 0 + Stage 1) — light, CPU-only stack. Runs on a login node.
+# Heavier stages add their deps at their milestone:
+#   M2  segmentation : torch, torchvision, cellpose  (needs cuda module + GPU sbatch)
+#   M3+ analysis     : scikit-image, anndata, squidpy, scikit-learn, statsmodels, pingouin
+# Versions are unpinned until M1 runs green, then pin from `pip freeze` for reproducibility.
+numpy
+tifffile
+imagecodecs
+pandas
+pyyaml
+matplotlib
+pytest
